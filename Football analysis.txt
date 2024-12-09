@@ -1,0 +1,32 @@
+create database football_analysis;
+use football_analysis;
+
+select * from football_data;
+
+-- Show portugal total goals
+select nation,sum(Goals)
+from football_data
+group by nation;
+
+-- Show for UEFA the total caps
+Select confederation,sum(Caps)
+from football_data
+where confederation= "UEFA";
+
+-- Show for AFC the average goals per match
+select Confederation,avg(Goals) 
+from football_data
+where Confederation="AFC";
+
+-- For all the nation show the total goals and the caps 
+select Nation,sum(Goals), Sum(Caps)
+from football_data
+group by nation;
+
+-- if the goals are more than 90 print the text the nation will flourish and if low show the text the nation needs proper trainer 
+select Goals,if(Goals > 90,"Nation will Flourish","Nation needs proper trainer for the team") as conditional_statement
+from football_data;
+-- for UEFA show the total goals 
+select Confederation, round(sum(Goals)) as total_goals
+from football_data
+where Confederation= "UEFA";
